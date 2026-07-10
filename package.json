@@ -1,5 +1,5 @@
 {
-  "name": "sn-bot",
+  "name": "titanbot",
   "version": "2.1.0",
   "description": "Bot comunitario modular de Shadow Networks",
   "main": "src/app.js",
