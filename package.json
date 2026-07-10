@@ -1,7 +1,7 @@
 {
-  "name": "titanbot",
+  "name": "sn-bot",
   "version": "2.1.0",
-  "description": "Modular Ultimate Community Bot by Touchpoint Support",
+  "description": "Bot comunitario modular de Shadow Networks",
   "main": "src/app.js",
   "type": "module",
   "scripts": {
