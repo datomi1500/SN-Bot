@@ -1,20 +1,20 @@
 FROM node:20-alpine
 
-# Create app directory
+# Crear el directorio de la aplicación
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# Instalar las dependencias de la aplicación
+# Se utiliza un comodín para garantizar que se copien tanto el archivo package.json como el package-lock.json
 COPY package*.json ./
 
-# Install only production dependencies
+# Instalar solo las dependencias de producción
 RUN npm ci --omit=dev
 
-# Bundle app source
+# Empaquetar el código fuente de la aplicación
 COPY . .
 
-# Expose the health check port from src/app.js
+# Exponer el puerto de comprobación de estado desde src/app.js
 EXPOSE 3000
 
-# Start the bot
+# Iniciar el bot
 CMD [ "npm", "start" ]
