@@ -14,62 +14,62 @@ import { InteractionHelper } from '../../utils/interactionHelper.js';
 export default {
     data: new SlashCommandBuilder()
         .setName('birthday')
-        .setDescription('Birthday system commands')
+        .setDescription('Comandos del sistema de cumpleaños')
         .addSubcommand(subcommand =>
             subcommand
                 .setName('set')
-                .setDescription('Set your birthday')
+                .setDescription('Introduce tu fecha de nacimiento')
+                .addIntegerOption(option =>
+                        option
+                            .setName('day')
+                            .setDescription('Dia del cumpleaños (1-31)')
+                            .setRequired(true)
+                            .setMinValue(1)
+                            .setMaxValue(31)
+                    )
                 .addIntegerOption(option =>
                     option
                         .setName('month')
-                        .setDescription('Birth month (1-12)')
+                        .setDescription('Mes del cumpleaños(1-12)')
                         .setRequired(true)
                         .setMinValue(1)
                         .setMaxValue(12)
-                )
-                .addIntegerOption(option =>
-                    option
-                        .setName('day')
-                        .setDescription('Birth day (1-31)')
-                        .setRequired(true)
-                        .setMinValue(1)
-                        .setMaxValue(31)
                 )
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('info')
-                .setDescription('View birthday information')
+                .setDescription('Ver información sobre el cumpleaños')
                 .addUserOption(option =>
                     option
                         .setName('user')
-                        .setDescription('User to check birthday for')
+                        .setDescription('El usuario debe comprobar la fecha de nacimiento de')
                         .setRequired(false)
                 )
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('list')
-                .setDescription('List all birthdays in the server')
+                .setDescription('Mostrar todos los cumpleaños del servidor')
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('remove')
-                .setDescription('Remove your birthday')
+                .setDescription('Elimina tu fecha de nacimiento')
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('next')
-                .setDescription('Show upcoming birthdays')
+                .setDescription('Mostrar los próximos cumpleaños')
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('setchannel')
-                .setDescription('Set or disable the channel for birthday announcements. (Manage Server required)')
+                .setDescription('Activar o desactivar el canal de anuncios de cumpleaños. (Se requiere **Gestionar servidor**)')
                 .addChannelOption(option =>
                     option
                         .setName('channel')
-                        .setDescription('The text channel for announcements. Leave empty to disable.')
+                        .setDescription('El canal de texto para anuncios. Déjalo en blanco para desactivarlo.')
                         .addChannelTypes(ChannelType.GuildText)
                         .setRequired(false)
                 )
@@ -93,10 +93,10 @@ export default {
                 case 'setchannel':
                     return await birthdaySetchannel.execute(interaction, config, client);
                 default:
-                    return await replyUserError(interaction, { type: ErrorTypes.UNKNOWN, message: 'Unknown subcommand' });
+                    return await replyUserError(interaction, { type: ErrorTypes.UNKNOWN, message: 'Subcomando desconocido' });
             }
         } catch (error) {
-            logger.error('Birthday command execution failed', {
+            logger.error('Error al ejecutar el comando _Birthday_', {
                 error: error.message,
                 stack: error.stack,
                 userId: interaction.user.id,
