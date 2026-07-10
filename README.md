@@ -1,31 +1,30 @@
-# TitanBot - Ultimate Discord Bot
+# SN - Bot
 
-**TitanBot** is a powerful, feature-rich Discord bot designed to enhance your server experience with comprehensive moderation tools, engaging economy systems, utility features, and much more. Built with modern Discord.js v14 and PostgreSQL for optimal performance and data persistence.
+**SN-Bot** Es un bot de Discord potente y repleto de funciones, diseñado para mejorar tu experiencia en el servidor con herramientas de moderación completas, sistemas económicos atractivos, funciones prácticas y mucho más. Desarrollado con la versión moderna de Discord.js v14 y PostgreSQL para garantizar un rendimiento óptimo y la persistencia de los datos.
 
-[![Support Server](https://img.shields.io/badge/-Support%20Server-%235865F2?logo=discord&logoColor=white&style=flat-square&logoWidth=20)](https://discord.gg/8kJBYhTGW9)
 [![Discord.js](https://img.shields.io/npm/v/discord.js?style=flat-square&labelColor=%23202225&color=%23202225&logo=npm&logoColor=white&logoWidth=20)](https://www.npmjs.com/package/discord.js)
 ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-%23336791?logo=postgresql&logoColor=white&style=flat-square&logoWidth=20)
 
-## Table of Contents
+## Índice
 
-- [Features Overview](#features-overview)
-- [Quick Setup](#quick-setup)
-- [Manual Installation Steps](#manual-installation-steps)
-- [Support Server](https://discord.gg/QnWNz2dKCE)
-- [Required Bot Intents](#bot-intents)
-- [Contributing](CONTRIBUTING.md)
+- [Resumen de características](#features-overview)
+- [Configuración rápida](#quick-setup)
+- [Pasos para la instalación manual](#manual-installation-steps)
+- [Servidor de Asistencia](https://discord.gg/QnWNz2dKCE)
+- [Intenciones obligatorias del bot](#bot-intents)
+- [Colaborar](CONTRIBUTING.md)
 
 <a name="features-overview"></a>
-## Features Overview
+## Resumen de características
 
-TitanBot offers a complete suite of tools for Discord server management and community engagement:
+SN-Bot ofrece un conjunto completo de herramientas para la gestión de servidores de Discord y la participación de la comunidad:
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### Moderation & Administration
-- **Mass Actions** - Bulk ban/kick capabilities
+### Moderación y administración
+- **Acciones masivas** - Funciones para bloquear o expulsar a usuarios de forma masiva
 - **User Notes** - Keep detailed moderation records
 - **Case Management** - View and track all mod actions
 
