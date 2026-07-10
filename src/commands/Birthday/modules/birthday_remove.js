@@ -17,22 +17,22 @@ export default {
             if (result.success) {
                 const embed = new EmbedBuilder()
                     .setColor(0x00FF00)
-                    .setTitle('Birthday Removed')
-                    .setDescription('Your birthday has been successfully removed from the server.');
+                    .setTitle('Cumpleaños eliminado')
+                    .setDescription('Tu fecha de nacimiento se ha eliminado correctamente del servidor.');
                 await InteractionHelper.safeEditReply(interaction, {
                     embeds: [embed]
                 });
             } else if (result.notFound) {
                 const embed = new EmbedBuilder()
                     .setColor(0xFF0000)
-                    .setTitle('No Birthday Found')
-                    .setDescription('You don\'t have a birthday set to remove.');
+                    .setTitle('No se ha encontrado ningún cumpleaños')
+                    .setDescription('No tienes ninguna fecha de cumpleaños configurada que eliminar.');
                 await InteractionHelper.safeEditReply(interaction, {
                     embeds: [embed]
                 });
             }
         } catch (error) {
-            logger.error("Birthday remove command execution failed", {
+            logger.error("Error al ejecutar el comando Birthday remove", {
                 error: error.message,
                 stack: error.stack,
                 userId: interaction.user.id,
