@@ -39,7 +39,7 @@ function parseArgs(argv) {
 function assertEnv(name) {
   const value = process.env[name];
   if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
+    throw new Error(`Falta una variable de entorno obligatoria: ${name}`);
   }
   return value;
 }
@@ -52,7 +52,7 @@ function ensureCommand(command) {
   });
 
   if (result.status !== 0) {
-    throw new Error(`${command} is required but was not found in PATH.`);
+    throw new Error(`${command} Es necesario, pero no se ha encontrado en PATH.`);
   }
 }
 
@@ -85,7 +85,7 @@ async function pruneBackups(backupDir, retentionDays) {
   }
 
   if (removed > 0) {
-    logger.info(`Pruned ${removed} old backup file(s)`, {
+    logger.info(`Podado ${removed} archivo(s) de copia de seguridad antiguo(s)`, {
       event: 'backup.prune.completed',
       removed,
       retentionDays
@@ -115,7 +115,7 @@ async function run() {
     databaseUrl
   ];
 
-  logger.info('Starting PostgreSQL backup', {
+  logger.info('Iniciar la copia de seguridad de PostgreSQL', {
     event: 'backup.start',
     outputPath
   });
@@ -132,7 +132,7 @@ async function run() {
 
   await pruneBackups(backupDir, retentionDays);
 
-  logger.info('PostgreSQL backup completed', {
+  logger.info('Copia de seguridad de PostgreSQL completada', {
     event: 'backup.completed',
     outputPath,
     retentionDays
@@ -142,7 +142,7 @@ async function run() {
 }
 
 run().catch((error) => {
-  logger.error('Backup command failed', {
+  logger.error('El comando de copia de seguridad ha fallado', {
     event: 'backup.failed',
     error: error.message
   });
