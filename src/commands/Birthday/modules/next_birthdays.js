@@ -15,8 +15,8 @@ export default {
             if (next5.length === 0) {
                 const embed = new EmbedBuilder()
                     .setColor(0xFF0000)
-                    .setTitle('No Birthdays Found')
-                    .setDescription('No birthdays have been set up in this server yet. Use `/birthday set` to add birthdays!');
+                    .setTitle('No se han encontrado cumpleaños')
+                    .setDescription('Aún no se ha configurado ningún cumpleaños en este servidor. ¡Utiliza `/birthday set` para añadir cumpleaños!');
                 return await InteractionHelper.safeEditReply(interaction, {
                     embeds: [embed]
                 });
@@ -33,25 +33,25 @@ export default {
 
                 let timeUntil = '';
                 if (birthday.daysUntil === 0) {
-                    timeUntil = '🎉 **Today!**';
+                    timeUntil = '🎉 **¡Hoy!**';
                 } else if (birthday.daysUntil === 1) {
-                    timeUntil = '📅 **Tomorrow!**';
+                    timeUntil = '📅 **¡Mañana!**';
                 } else {
-                    timeUntil = `In ${birthday.daysUntil} day${birthday.daysUntil > 1 ? 's' : ''}`;
+                    timeUntil = `En ${birthday.daysUntil} dias${birthday.daysUntil > 1 ? 's' : ''}`;
                 }
             }
 
             if (displayIndex === 0) {
                 const embed = new EmbedBuilder()
                     .setColor(0xFF0000)
-                    .setTitle('No Upcoming Birthdays')
-                    .setDescription('No upcoming birthdays found for current server members.');
+                    .setTitle('No hay cumpleaños próximos')
+                    .setDescription('No se han encontrado cumpleaños próximos de los miembros actuales del servidor.');
                 return await InteractionHelper.safeEditReply(interaction, {
                     embeds: [embed]
                 });
             }
 
-            let birthdayList = `🎂 **Next 5 Upcoming Birthdays**\n\nHere are the next 5 birthdays in ${interaction.guild.name}:\n\n`;
+            let birthdayList = `🎂 **Los próximos 5 cumpleaños**\n\nEstos son los próximos 5 cumpleaños en ${interaction.guild.name}:\n\n`;
             displayIndex = 0;
             for (const birthday of next5) {
                 const member = await interaction.guild.members.fetch(birthday.userId).catch(() => null);
@@ -62,35 +62,35 @@ export default {
 
                 let timeUntil = '';
                 if (birthday.daysUntil === 0) {
-                    timeUntil = '🎉 **Today!**';
+                    timeUntil = '🎉 **¡Hoy!**';
                 } else if (birthday.daysUntil === 1) {
-                    timeUntil = '📅 **Tomorrow!**';
+                    timeUntil = '📅 **¡Mañana!**';
                 } else {
-                    timeUntil = `In ${birthday.daysUntil} day${birthday.daysUntil > 1 ? 's' : ''}`;
+                    timeUntil = `En ${birthday.daysUntil} dia${birthday.daysUntil > 1 ? 's' : ''}`;
                 }
 
-                birthdayList += `${displayIndex}. **${member.displayName}**\n<@${birthday.userId}>\n📅 **Date:** ${birthday.monthName} ${birthday.day}\n⏰ **Time:** ${timeUntil}\n\n`;
+                birthdayList += `${displayIndex}. **${member.displayName}**\n<@${birthday.userId}>\n📅 **Fecha:** ${birthday.day} ${birthday.monthName}\n⏰ **Hora:** ${timeUntil}\n\n`;
             }
 
-            birthdayList += `Use /birthday set to add your birthday!`;
+            birthdayList += `¡Utiliza el conjunto /birthday para añadir tu fecha de nacimiento!`;
 
             const embed = new EmbedBuilder()
                 .setColor(0x00FF00)
-                .setTitle('Next 5 Upcoming Birthdays')
+                .setTitle('Los próximos 5 cumpleaños')
                 .setDescription(birthdayList);
 
             await InteractionHelper.safeEditReply(interaction, {
                 embeds: [embed]
             });
             
-            logger.info('Next birthdays retrieved successfully', {
+            logger.info('Se han recuperado correctamente los próximos cumpleaños', {
                 userId: interaction.user.id,
                 guildId: interaction.guildId,
                 upcomingCount: displayIndex,
                 commandName: 'next_birthdays'
             });
         } catch (error) {
-            logger.error('Next birthdays command execution failed', {
+            logger.error('No se ha podido ejecutar el comando Next birthdays', {
                 error: error.message,
                 stack: error.stack,
                 userId: interaction.user.id,
