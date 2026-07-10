@@ -1,59 +1,59 @@
-TitanBot Roadmap / Structure Overview
+Resumen de la estructura
 
-Goal
-- Keep this as a practical map of the codebase.
-- Show main folders and important files only (not every file).
+Objetivo
+- Mantener esto como un mapa práctico del código fuente.
+- Mostrar únicamente las carpetas principales y los archivos importantes (no todos los archivos).
 
-Root
-- index.js                    -> process entry point
-- package.json                -> scripts, dependencies, project metadata
-- README.md                   -> setup and usage docs
-- SECURITY.md                 -> security policy
-- scripts/                    -> utility/maintenance scripts (backup, restore, migrate)
-- logs/                       -> runtime log output
-- src/                        -> main bot application code
-- tests/                      -> unit tests (run via npm test)
+Raíz
+- index.js                    -> punto de entrada del proceso
+- package.json                -> scripts, dependencias y metadatos del proyecto
+- README.md                   -> documentación de configuración y uso
+- SECURITY.md                 -> política de seguridad
+- scripts/                    -> scripts de utilidades y mantenimiento (copias de seguridad, restauración, migración)
+- logs/                       -> registros de ejecución
+- src/                        -> código principal de la aplicación del bot
+- tests/                      -> pruebas unitarias (se ejecutan mediante «npm test»)
 
 src/
-- app.js                      -> creates client, initializes systems, starts web server
+- app.js                      -> crea el cliente, inicializa los sistemas e inicia el servidor web
 
-- commands/                   -> slash command categories by feature
-  - Core/                     -> help, ping, stats, uptime, invite
-  - Community/                -> application management + dashboards
-  - Logging/                  -> audit logging + event management
+- commands/                   -> categorías de comandos de barra inclinada por función
+  - Core/                     -> ayuda, ping, estadísticas, tiempo de actividad, invitación
+  - Community/                -> gestión de aplicaciones + paneles de control
+  - Logging/                  -> registros de auditoría + gestión de eventos
     - modules/logging_dashboard.js
     - modules/logging_setchannel.js
-  - Ticket/                   -> support ticket system + dashboard
-  - ServerStats/              -> server stats channel system
-  - Economy/                  -> economy system
-  - Moderation/               -> moderation/admin commands
-  - Verification/             -> member verification flow
-  - JoinToCreate/             -> dynamic voice channel creation
-  - Reaction_roles/           -> automatic role assignment
-  - Birthday/, Fun/, Giveaway/, Leveling/, Search/, Tools/, Utility/, Welcome/
+  - Ticket/                   -> sistema de tickets de soporte + panel de control
+  - ServerStats/              -> sistema de canales de estadísticas del servidor
+  - Economy/                  -> sistema económico
+  - Moderation/               -> comandos de moderación y administración
+  - Verification/             -> flujo de verificación de miembros
+  - JoinToCreate/             -> creación dinámica de canales de voz
+  - Reaction_roles/           -> asignación automática de roles
+  - Cumpleaños/, Diversion/, Sorteo/, Niveles/, Búsqueda/, Herramientas/, Utilidades/, Bienvenida/
 
-- config/                     -> centralized configuration modules
-- events/                     -> Discord event listeners
-- handlers/                   -> interaction routing and component handlers
-  - commandLoader.js          -> loads slash commands at startup
-  - events.js                 -> Discord event listener registration
-  - interactions.js           -> button/select/modal router
+- config/                     -> módulos de configuración centralizados
+- events/                     -> Detectores de eventos de Discord
+- handlers/                   -> Enrutamiento de interacciones y controladores de componentes
+  - commandLoader.js          -> Carga los comandos de barra al iniciarse
+  - events.js                 -> Registro de detectores de eventos de Discord
+  - interactions.js           -> Enrutador de botones, menús desplegables y ventanas modales
   - ticketButtons.js, reactionRoles.js, etc.
 
-- interactions/               -> button, modal, and select menu handlers
-- services/                   -> business logic + data operations
-- utils/                      -> shared helpers
-  - database.js               -> facade re-exporting database modules
-  - database/wrapper.js       -> DatabaseWrapper, get/set helpers
-  - database/keys.js          -> Redis-style key builders
-  - database/tickets.js       -> ticket persistence + guild ticket stats
-  - panelStatus.js            -> shared panel message detection
+- interactions/               -> controladores de botones, modales y menús de selección
+- services/                   -> lógica de negocio + operaciones con datos
+- utils/                      -> ayudantes compartidos
+  - database.js               -> fachada que reexporta los módulos de la base de datos
+  - database/wrapper.js       -> DatabaseWrapper, ayudantes get/set
+  - database/keys.js          -> Generadores de claves al estilo Redis
+  - database/tickets.js       -> Persistencia de tickets + estadísticas de tickets de gremios
+  - panelStatus.js            -> Detección compartida de mensajes del panel
   - errorHandler.js, logger.js, embeds.js, etc.
 
-Database
-- PostgreSQL (primary) with in-memory fallback for development
-- Graceful degradation when PostgreSQL is unavailable
+Base de datos
+- PostgreSQL (principal) con alternativa en memoria para el desarrollo
+- Degradación gradual cuando PostgreSQL no está disponible
 
-Notes
-- Modular by feature area: commands -> handlers -> services -> utils
-- bot.js is the single source of truth for embed theming/colors and core bot config
+Notas
+- Modular por área funcional: comandos -> controladores -> servicios -> utilidades
+- bot.js es la única fuente de referencia para la personalización de temas y colores de los elementos incrustados y la configuración básica del bot
