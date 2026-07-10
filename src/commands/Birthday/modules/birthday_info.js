@@ -30,7 +30,7 @@ export default {
             const embed = new EmbedBuilder()
                 .setColor(0x00FF00)
                 .setTitle('Birthday Information')
-                .setDescription(`**Fecha:** ${birthdayData.monthName} ${birthdayData.day}\n**User:** ${targetUser.toString()}`);
+                .setDescription(`**Fecha:** ${birthdayData.day} ${birthdayData.monthName}\n**Usuario:** ${targetUser.toString()}`);
             
             await InteractionHelper.safeEditReply(interaction, {
                 embeds: [embed]
