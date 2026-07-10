@@ -17,8 +17,8 @@ export default {
             if (sortedBirthdays.length === 0) {
                 const embed = new EmbedBuilder()
                     .setColor(0xFF0000)
-                    .setTitle('No Birthdays')
-                    .setDescription('No birthdays have been set in this server yet.');
+                    .setTitle('Sin cumpleaños')
+                    .setDescription('Todavía no se ha fijado ninguna fecha de cumpleaños en este servidor.');
                 return await InteractionHelper.safeEditReply(interaction, {
                     embeds: [embed]
                 });
@@ -49,8 +49,8 @@ export default {
             if (displayIndex === 0) {
                 const embed = new EmbedBuilder()
                     .setColor(0xFF0000)
-                    .setTitle('No Birthdays')
-                    .setDescription('No birthdays have been set by current server members.');
+                    .setTitle('Sin cumpleaños')
+                    .setDescription('Los miembros actuales del servidor no han fijado ninguna fecha de cumpleaños..');
                 return await InteractionHelper.safeEditReply(interaction, {
                     embeds: [embed]
                 });
@@ -60,14 +60,14 @@ export default {
 
             const embed = new EmbedBuilder()
                 .setColor(0x00FF00)
-                .setTitle('Server Birthdays')
+                .setTitle('Cumpleaños server')
                 .setDescription(`${birthdayList}\n\nTotal: ${displayIndex} birthday${displayIndex !== 1 ? 's' : ''}`);
 
             await InteractionHelper.safeEditReply(interaction, {
                 embeds: [embed]
             });
             
-            logger.info('Birthday list retrieved successfully', {
+            logger.info('La lista de cumpleaños se ha recuperado correctamente', {
                 userId: interaction.user.id,
                 guildId,
                 birthdayCount: displayIndex,
@@ -75,7 +75,7 @@ export default {
                 commandName: 'birthday_list'
             });
         } catch (error) {
-            logger.error("Birthday list command execution failed", {
+            logger.error("Error al ejecutar el comando lista de cumpleaños", {
                 error: error.message,
                 stack: error.stack,
                 userId: interaction.user.id,
