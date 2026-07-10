@@ -18,10 +18,10 @@ export default {
             if (!birthdayData) {
                 const embed = new EmbedBuilder()
                     .setColor(0xFF0000)
-                    .setTitle('No Birthday Found')
+                    .setTitle('No se ha encontrado ningún cumpleaños')
                     .setDescription(targetUser.id === interaction.user.id 
-                        ? "You haven't set your birthday yet. Use `/birthday set` to add it!"
-                        : `${targetUser.username} hasn't set their birthday yet.`);
+                        ? "Aún no has configurado tu fecha de nacimiento. ¡Utiliza `/birthday set` para añadirla!"
+                        : `${targetUser.username} Aún no ha fijado su fecha de nacimiento.`);
                 return await InteractionHelper.safeEditReply(interaction, {
                     embeds: [embed]
                 });
@@ -30,20 +30,20 @@ export default {
             const embed = new EmbedBuilder()
                 .setColor(0x00FF00)
                 .setTitle('Birthday Information')
-                .setDescription(`**Date:** ${birthdayData.monthName} ${birthdayData.day}\n**User:** ${targetUser.toString()}`);
+                .setDescription(`**Fecha:** ${birthdayData.monthName} ${birthdayData.day}\n**User:** ${targetUser.toString()}`);
             
             await InteractionHelper.safeEditReply(interaction, {
                 embeds: [embed]
             });
             
-            logger.info('Birthday info retrieved successfully', {
+            logger.info('La información sobre el cumpleaños se ha recuperado correctamente', {
                 userId: interaction.user.id,
                 targetUserId: targetUser.id,
                 guildId,
                 commandName: 'birthday_info'
             });
         } catch (error) {
-            logger.error("Birthday info command execution failed", {
+            logger.error("Error al ejecutar el comando de información de cumpleaños", {
                 error: error.message,
                 stack: error.stack,
                 userId: interaction.user.id,
